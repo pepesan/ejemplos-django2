@@ -6,6 +6,7 @@ menu ="""<ul>
         <li><a href='/'>Inicio</a></li>
         <li><a href='/contacto/'>Contacto</a></li>
         <li><a href='/productos/'>Productos</a></li>
+        <li><a href='/plantilla/'>Uso de Plantilla</a></li>
         </ul>"""
 def index(request):
     return HttpResponse(
@@ -27,7 +28,9 @@ def listadoProductos(request):
 def muestraPlantilla(request):
     mititulo="Mi título molón"
     template = loader.get_template('miapp/plantilla.html')
-    context = {'titulo': mititulo}
+    context = {
+        'titulo': mititulo
+    }
     return HttpResponse(template.render(context,request))
 
 def muestraDatos(request):
@@ -60,5 +63,12 @@ def capturaFecha(request, agno, mes):
     context = {
         'agnoCapturado': agno,
         'mesCapturado': mes
+    }
+    return HttpResponse(template.render(context, request))
+
+def incluyePlantilla(request):
+    template = loader.get_template('miapp/incluye.html')
+    context = {
+        'titulo': "Incluyendo el menu"
     }
     return HttpResponse(template.render(context, request))
