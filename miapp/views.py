@@ -25,7 +25,17 @@ def listadoProductos(request):
         "Listado de Productos </br>")
 
 def muestraPlantilla(request):
-    titulo="Mi título molón"
+    mititulo="Mi título molón"
     template = loader.get_template('miapp/plantilla.html')
-    context = {'titulo': titulo}
+    context = {'titulo': mititulo}
+    return HttpResponse(template.render(context,request))
+
+def muestraDatos(request):
+    mititulo="Mi título molón"
+    template = loader.get_template('miapp/datos.html')
+    context = {
+        'titulo': mititulo,
+        'subtitulo': "Mi subtítulo aún más molón",
+        'entero': 2
+    }
     return HttpResponse(template.render(context,request))
