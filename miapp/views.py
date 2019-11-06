@@ -39,3 +39,26 @@ def muestraDatos(request):
         'entero': 2
     }
     return HttpResponse(template.render(context,request))
+
+def capturaDatos(request , n):
+    template = loader.get_template('miapp/captura.html')
+    context={
+        'datoCapturado': n,
+    }
+    return HttpResponse(template.render(context, request))
+
+def capturaCadena(request , cadena):
+    template = loader.get_template('miapp/captura.html')
+    context={
+        'datoCapturado': cadena,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def capturaFecha(request, agno, mes):
+    template = loader.get_template('miapp/fechas.html')
+    context = {
+        'agnoCapturado': agno,
+        'mesCapturado': mes
+    }
+    return HttpResponse(template.render(context, request))
