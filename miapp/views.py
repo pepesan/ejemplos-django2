@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template import loader
 from django.http import HttpResponse
 # Create your views here.
 menu ="""<ul>
@@ -22,3 +23,9 @@ def listadoProductos(request):
     return HttpResponse(
         menu +
         "Listado de Productos </br>")
+
+def muestraPlantilla(request):
+    titulo="Mi título molón"
+    template = loader.get_template('miapp/plantilla.html')
+    context = {'titulo': titulo}
+    return HttpResponse(template.render(context,request))
