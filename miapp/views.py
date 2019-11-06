@@ -7,6 +7,7 @@ menu ="""<ul>
         <li><a href='/contacto/'>Contacto</a></li>
         <li><a href='/productos/'>Productos</a></li>
         <li><a href='/plantilla/'>Uso de Plantilla</a></li>
+        <li><a href='/incluye/'>Incluye menu</a></li>
         </ul>"""
 def index(request):
     return HttpResponse(
