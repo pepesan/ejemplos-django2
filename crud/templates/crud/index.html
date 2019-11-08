@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Productos</title>
+</head>
+<body>
+{% include "miapp/menu.html" %}
+<h2>{{ titulo }}</h2>
+
+<div>
+
+    <table>
+        <thead>
+            <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Operaciones</th></tr>
+        </thead>
+        <tbody>
+        {% for producto in productos %}
+            <tr>
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.precio }}</td>
+                <td>Operaciones por ID</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
