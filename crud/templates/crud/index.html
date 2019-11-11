@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Listado de Productos</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'crud/estilos.css' %}" />
 </head>
@@ -37,6 +40,6 @@
         </tbody>
     </table>
 </div>
-
+{% bootstrap_javascript jquery='full' %}
 </body>
 </html>
