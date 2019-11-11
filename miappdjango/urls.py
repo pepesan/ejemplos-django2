@@ -22,5 +22,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('miapp.urls')),
-    path('crud/',include('crud.urls'))
+    path('crud/',include('crud.urls', namespace='crud'))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,8 +1,10 @@
 from django.urls import include, path
 from crud import views
 
+app_name = 'crud'
+
 urlpatterns = [
-    path('', views.index, name="list-product"),
+    path('', views.index, name="index"),
     path('add', views.addForm, name="add-form-product"),
     path('save', views.save, name='save-add-product'),
     path('<int:id>', views.show, name='show-product'),

@@ -9,7 +9,7 @@
 <h2>{{ titulo }}</h2>
 
 <div>
-    <form action="/crud/delete-confirm/{{ producto.id }}" method="post">
+    <form action="{% url 'crud:delete-confirmation-product' producto.id %}" method="post">
         {% csrf_token %}
         <div>
             <label for="iden">ID</label>

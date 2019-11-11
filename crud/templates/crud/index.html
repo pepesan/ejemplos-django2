@@ -9,7 +9,7 @@
 <h2>{{ titulo }}</h2>
 
 <div>
-    <p><a href="/crud/add"><button>Añadir</button></a></p>
+    <p><a href="{% url 'crud:add-form-product' %}"><button>Añadir</button></a></p>
     <table>
         <thead>
             <tr>
@@ -26,9 +26,9 @@
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.precio }}</td>
                 <td>
-                    <a href="/crud/{{ producto.id }}"><button class="btn btn-primary">Mostrar</button></a>
-                    <a href="/crud/edit/{{ producto.id }}"><button>Editar</button></a>
-                    <a href="/crud/delete/{{ producto.id }}"><button>Borrar</button></a>
+                    <a href="{% url 'crud:show-product' producto.id %}"><button class="btn btn-primary">Mostrar</button></a>
+                    <a href="{% url 'crud:edit-form-product' producto.id %}"><button>Editar</button></a>
+                    <a href="{% url 'crud:delete-form-product' producto.id %}"><button>Borrar</button></a>
                 </td>
             </tr>
         {% endfor %}
