@@ -1,29 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Productos</title>
-</head>
-<body>
-{% include "miapp/menu.html" %}
+{% include "miapp/header.html" %}
 <h2>{{ titulo }}</h2>
 
 <div>
     <form action="{% url 'crud:save-add-product' %}" method="post">
         {% csrf_token %}
-        <div>
+        <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre"
+            <input type="text" name="nombre" id="nombre" class="form-control"
+                   aria-describedby="nombreHelp"
                    placeholder="introduzca nombre" value="{{  producto.nombre }}"/>
+            <small id="nombreHelp" class="form-text text-muted">Este será el nombre que le damos al producto.</small>
         </div>
-        <div>
+        <div class="form-group">
             <label for="precio">Precio</label>
-            <input type="number" name="precio" id="precio" value="{{  producto.precio }}"/>
+            <input type="number" name="precio" aria-describedby="precioHelp"
+                   id="precio" value="{{  producto.precio }}"
+                   class="form-control"/>
+            <small id="precioHelp" class="form-text text-muted">Este será el precio que le damos al producto.</small>
         </div>
-        <input type="submit" name="submit" id="submit" value="Enviar"/>
+        <input type="submit" name="submit" id="submit" value="Enviar" class="btn btn-primary"/>
     </form>
-    <p><a href="{% url 'crud:index' %}"><button>Volver al listado</button></a></p>
+    <p><a href="{% url 'crud:index' %}"><button type="button"  class="btn btn-primary">Volver al listado</button></a></p>
 </div>
-
-</body>
-</html>
+{% include "miapp/footer.html" %}

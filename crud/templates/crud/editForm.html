@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Productos</title>
-</head>
-<body>
-{% include "miapp/menu.html" %}
+{% include "miapp/header.html" %}
+
 <h2>{{ titulo }}</h2>
 
 <div>
     <form action="{% url 'crud:save-edit-product' producto.id %}" method="post">
         {% csrf_token %}
-        <div>
+        <div class="form-group">
             <label for="iden">ID</label>
-            <input type="text" name="iden" id="iden" disabled
-                   placeholder="introduzca nombre" value="{{  producto.id }}"/>
+            <input  type="text" name="iden" id="iden" disabled class="form-control"
+                    placeholder="introduzca nombre" value="{{  producto.id }}"
+                    aria-describedby="idHelp"/>
+            <small id="idHelp" class="form-text text-muted">Este es el id que le damos al producto.</small>
         </div>
-        <div>
+        <div class="form-group">
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" id="nombre"
-                   placeholder="introduzca nombre" value="{{  producto.nombre }}"/>
+            <input  type="text" name="nombre" id="nombre" class="form-control"
+                    placeholder="introduzca nombre" value="{{  producto.nombre }}"
+                    aria-describedby="nombreHelp"/>
+            <small id="nombreHelp" class="form-text text-muted">Este será el nombre que le damos al producto.</small>
         </div>
-        <div>
+        <div class="form-group">
             <label for="precio">Precio</label>
-            <input type="number" name="precio" id="precio" value="{{  producto.precio }}"/>
+            <input  type="number" name="precio" id="precio" class="form-control"
+                    value="{{  producto.precio }}" aria-describedby="precioHelp"/>
+            <small id="precioHelp" class="form-text text-muted">Este será el precio que le damos al producto.</small>
         </div>
-        <input type="submit" name="submit" id="submit" value="Enviar"/>
+        <input type="submit" name="submit" id="submit" value="Enviar" class="btn btn-warning"/>
     </form>
-    <p><a href="{% url 'crud:index' %}"><button>Volver al listado</button></a></p>
+    <p><a href="{% url 'crud:index' %}"><button type="button" class="btn btn-primary">Volver al listado</button></a></p>
 </div>
 
-</body>
-</html>
+{% include "miapp/footer.html" %}

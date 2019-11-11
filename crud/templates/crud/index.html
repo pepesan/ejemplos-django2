@@ -1,45 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Productos</title>
-    {% load bootstrap4 %}
-    {% bootstrap_css %}
-
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'crud/estilos.css' %}" />
-</head>
-<body>
-{% include "miapp/menu.html" %}
+{% include "miapp/header.html" %}
 <h2>{{ titulo }}</h2>
 
 <div>
-    <p><a href="{% url 'crud:add-form-product' %}"><button>Añadir</button></a></p>
-    <table>
+    <p><a href="{% url 'crud:add-form-product' %}"><button type="button" class="btn btn-primary">Añadir</button></a></p>
+    <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Operaciones</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Operaciones</th>
             </tr>
         </thead>
         <tbody>
         {% for producto in productos %}
             <tr>
-                <td>{{ producto.id }}</td>
+                <td scope="row">{{ producto.id }}</td>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.precio }}</td>
                 <td>
                     <a href="{% url 'crud:show-product' producto.id %}"><button class="btn btn-primary">Mostrar</button></a>
-                    <a href="{% url 'crud:edit-form-product' producto.id %}"><button>Editar</button></a>
-                    <a href="{% url 'crud:delete-form-product' producto.id %}"><button>Borrar</button></a>
+                    <a href="{% url 'crud:edit-form-product' producto.id %}"><button class="btn btn-warning">Editar</button></a>
+                    <a href="{% url 'crud:delete-form-product' producto.id %}"><button class="btn btn-danger">Borrar</button></a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-{% bootstrap_javascript jquery='full' %}
-</body>
-</html>
+{% include "miapp/footer.html" %}

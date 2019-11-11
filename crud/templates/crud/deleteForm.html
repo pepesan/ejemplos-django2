@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Productos</title>
-</head>
-<body>
-{% include "miapp/menu.html" %}
+{% include "miapp/header.html" %}
+
 <h2>{{ titulo }}</h2>
 
 <div>
@@ -26,10 +20,9 @@
             <input type="number" name="precio" id="precio"
                    value="{{  producto.precio }}" disabled/>
         </div>
-        <input type="submit" name="submit" id="submit" value="Borrar"/>
+        <input type="submit" name="submit" id="submit" value="Borrar" class="btn btn-danger"/>
     </form>
-    <p><a href="/crud/"><button>Volver al listado</button></a></p>
+    <p><a href="/crud/"><button type="button" class="btn btn-primary">Volver al listado</button></a></p>
 </div>
 
-</body>
-</html>
+{% include "miapp/footer.html" %}

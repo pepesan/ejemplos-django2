@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Productos</title>
-</head>
-<body>
-{% include "miapp/menu.html" %}
+{% include "miapp/header.html" %}
+
 <h2>{{ titulo }}</h2>
 
 <div>
@@ -18,8 +12,7 @@
     <div>
         <label for="precio">Precio: {{  producto.precio }}</label>
     </div>
-    <p><a href="{% url 'crud:index' %}"><button>Volver al listado</button></a></p>
+    <p><a href="{% url 'crud:index' %}"><button type="button" class="btn btn-primary">Volver al listado</button></a></p>
 </div>
 
-</body>
-</html>
+{% include "miapp/footer.html" %}
