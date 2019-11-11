@@ -1,0 +1,18 @@
+{% include "miapp/header.html" %}
+
+<h2>{{ titulo }}</h2>
+
+<div>
+    <div>
+        <label for="iden">ID: {{  producto.id }}</label>
+    </div>
+    <div>
+        <label for="nombre">Nombre: {{  producto.nombre.value }}</label>
+    </div>
+    <div>
+        <label for="precio">Precio: {{  producto.precio.value }}</label>
+    </div>
+    <p><a href="{% url 'crud:index' %}"><button type="button"  class="btn btn-primary">Volver al listado</button></a></p>
+</div>
+
+{% include "miapp/footer.html" %}

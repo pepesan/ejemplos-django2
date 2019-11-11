@@ -1,0 +1,16 @@
+{% include "miapp/header.html" %}
+<form action="{% url 'crud:save-class-add-product' %}" method="post">
+        {% csrf_token %}
+{% for field in productoForm %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+<input type="submit" name="submit" id="submit" value="Enviar" class="btn btn-primary"/>
+</form>
+<p><a href="{% url 'crud:index' %}"><button type="button"  class="btn btn-primary">Volver al listado</button></a></p>
+{% include "miapp/footer.html" %}
