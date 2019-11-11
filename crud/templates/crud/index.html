@@ -9,10 +9,15 @@
 <h2>{{ titulo }}</h2>
 
 <div>
-
+    <p><a href="/crud/add"><button>Añadir</button></a></p>
     <table>
         <thead>
-            <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Operaciones</th></tr>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Operaciones</th>
+            </tr>
         </thead>
         <tbody>
         {% for producto in productos %}
@@ -20,7 +25,11 @@
                 <td>{{ producto.id }}</td>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.precio }}</td>
-                <td>Operaciones por ID</td>
+                <td>
+                    <a href="/crud/{{ producto.id }}"><button class="btn btn-primary">Mostrar</button></a>
+                    <a href="/crud/edit/{{ producto.id }}"><button>Editar</button></a>
+                    <a href="/crud/delete/{{ producto.id }}"><button>Borrar</button></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

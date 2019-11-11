@@ -29,16 +29,92 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 def addForm(request):
-    return HttpResponse("ADD")
+    mititulo = "Formulario de alta de Productos"
+    template = loader.get_template('crud/addForm.html')
+    producto = {
+        'nombre': "",
+        'precio': 0
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))
 def show(request, id):
-    return HttpResponse("Mostrar")
+    mititulo = "Mostrar Producto"
+    template = loader.get_template('crud/show.html')
+    producto = {
+        'id': id,
+        'nombre': "HDD 4TB",
+        'precio': 35
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))
 def save(request):
-    return HttpResponse("Guardar")
+    mititulo = "Confirmación de alta de Producto"
+    template = loader.get_template('crud/save.html')
+    producto = {
+        'id': 2,
+        'nombre': "HDD 4TB",
+        'precio': 35
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))
 def saveEdit(request, id):
-    return HttpResponse("guardar edit")
+    mititulo = "Producto guardado"
+    template = loader.get_template('crud/save.html')
+    producto = {
+        'id': id,
+        'nombre': "HDD 4TB",
+        'precio': 35
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))
 def editForm(request, id):
-    return HttpResponse("Edit")
+    mititulo = "Formulario de alta de Productos"
+    template = loader.get_template('crud/editForm.html')
+    producto = {
+        'id': id,
+        'nombre': "HDD 4TB",
+        'precio': 35
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))
 def deleteForm(request, id):
-    return HttpResponse("borrado")
+    mititulo = "Confirmación de Borrado de Producto"
+    template = loader.get_template('crud/deleteForm.html')
+    producto = {
+        'id': id,
+        'nombre': "HDD 4TB",
+        'precio': 35
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))
 def deleteConfirmation(request, id):
-    return HttpResponse("confirma borrado")
+    mititulo = "Confirmación de borrado de Producto"
+    template = loader.get_template('crud/deleteConfirm.html')
+    producto = {
+        'id': id,
+        'nombre': "HDD 4TB",
+        'precio': 35
+    }
+    context = {
+        'titulo': mititulo,
+        'producto': producto
+    }
+    return HttpResponse(template.render(context, request))

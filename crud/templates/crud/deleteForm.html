@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Productos</title>
+</head>
+<body>
+{% include "miapp/menu.html" %}
+<h2>{{ titulo }}</h2>
+
+<div>
+    <form action="/crud/delete-confirm/{{ producto.id }}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="iden">ID</label>
+            <input type="text" name="iden" id="iden" disabled
+                   placeholder="introduzca nombre" value="{{  producto.id }}"/>
+        </div>
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" id="nombre" disabled
+                   placeholder="introduzca nombre" value="{{  producto.nombre }}"/>
+        </div>
+        <div>
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" id="precio"
+                   value="{{  producto.precio }}" disabled/>
+        </div>
+        <input type="submit" name="submit" id="submit" value="Borrar"/>
+    </form>
+    <p><a href="/crud/"><button>Volver al listado</button></a></p>
+</div>
+
+</body>
+</html>
