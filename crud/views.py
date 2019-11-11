@@ -71,13 +71,19 @@ def show(request, id):
     }
     return HttpResponse(template.render(context, request))
 def save(request):
+    print(request.POST)
     mititulo = "Confirmación de alta de Producto"
     template = loader.get_template('crud/save.html')
+    producto = request.POST
+    producto.id= 2
+
+    """
     producto = {
         'id': 2,
         'nombre': "HDD 4TB",
         'precio': 35
     }
+    """
     context = {
         'titulo': mititulo,
         'producto': producto
