@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'miapp',
     'crud',
     'bootstrap4',
-    'biblioteca'
+    'biblioteca',
+    'django_tables2'
 ]
 
 MIDDLEWARE = [
