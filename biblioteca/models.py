@@ -61,7 +61,7 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
     # ManyToManyField, porque un género puede contener muchos libros y un libro puede cubrir varios géneros.
     # La clase Genre ya ha sido definida, entonces podemos especificar el objeto arriba
-
+    language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
     def __str__(self):
         """String que representa al objeto Book"""
         return self.title

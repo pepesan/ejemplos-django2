@@ -14,4 +14,5 @@ urlpatterns = [
     path('genre/list3', listado_sencillo, name='genre-list3'),
     path('genre/api', list_json, name='genre-list-api'),
     path('genre/api/<int:pk>', get_json, name='genre-get-api'),
+    path('lenguajes/', presentaLenguajes, name='genre-list'),
 ]

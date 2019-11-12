@@ -1,0 +1,9 @@
+<h1>Listado de lenguajes</h1>
+{{ listado }}
+<ul>
+{% for lenguaje in listado %}
+   <li>ID {{ lenguaje.id }}: {{ lenguaje.name }}</li>
+{% empty %}
+    <li>No hay Lenguajes todavía</li>
+{% endfor %}
+</ul>

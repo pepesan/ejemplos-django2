@@ -12,7 +12,14 @@ import json
 from django.template import loader
 from django.http import HttpResponse
 
-from biblioteca.models import Genre
+from biblioteca.models import Genre, Language
+
+
+def presentaLenguajes(request):
+    template = loader.get_template('biblioteca/language_list.html')
+    listado= Language.objects.all()
+    context = {'listado': listado}
+    return HttpResponse(template.render(context, request))
 
 class GenreListView(ListView):
 
