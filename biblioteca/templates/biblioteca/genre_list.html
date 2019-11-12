@@ -1,0 +1,29 @@
+{% extends 'biblioteca/base.html' %}
+{% block content %}
+    <h1>Géneros</h1>
+    <a href="{% url 'biblioteca:genre-create' %}" class="btn btn-success">Crear Género</a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+        {% for genre in object_list %}
+            <tr>
+                <td><a href="{% url 'biblioteca:genre-detail'  genre.id %}">{{ genre.name }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'biblioteca:genre-detail'  genre.id %}" class="btn btn-info">Detalle</a>&nbsp;
+                    <a href="{% url 'biblioteca:genre-update-form'  genre.id %}" class="btn btn-warning">Editar</a>&nbsp;
+                    <a href="{% url 'biblioteca:genre-delete'  genre.id %}"class="btn btn-danger">Borrar</a>
+                </td>
+            </tr>
+        {% empty %}
+            <td colspan="2">No hay Géneros todavía</td>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+

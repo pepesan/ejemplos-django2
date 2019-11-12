@@ -1,0 +1,40 @@
+{% load staticfiles %}<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Ejemplo de CRUD de Géneros Literarios</title>
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+            <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+            <!--link rel="stylesheet" href="{% static 'css/blog.css' %}"-->
+        </head>
+        <body>
+            <div class="page-header">
+                <nav class="navbar navbar-default">
+                  <div class="container-fluid">
+                    <div class="navbar-header">
+                      <a class="navbar-brand" href="#">Gestión de Biblioteca</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="{% url 'index' %}">Inicio</a></li>
+                    </ul>
+                      <ul class="nav navbar-nav">
+                        <!-- Cambiar a un enlace nombrado por urls -->
+                        <li><a href="/libros">Libros</a></li>
+                        <li><a href="{% url 'biblioteca:genre-list' %}">Biblioteca</a></li>
+
+                        <li><a href="{% url 'biblioteca:genre-list2' %}">Biblioteca DataTable</a></li>
+                        <li><a href="{% url 'biblioteca:genre-list3' %}">Listado de Géneros</a></li>
+                    </ul>
+                  </div>
+                </nav>
+            </div>
+            <div class="content container">
+                <div class="row">
+                    <div class="col-md-12">
+                    {% block content %}
+                    {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>

@@ -1,0 +1,9 @@
+{% extends 'biblioteca/base.html' %}
+{% block content %}
+    <p><a href="{% url 'biblioteca:genre-list' %}"  class="btn btn-default">Volver al Listado</a> </p>
+    <h2>Formulario de Alta de Géneros</h2>
+    <form method="post">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar" class="btn btn-warning" />
+    </form>
+{% endblock %}

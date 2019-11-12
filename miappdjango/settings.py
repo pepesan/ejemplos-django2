@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'miapp',
     'crud',
-    'bootstrap4'
+    'bootstrap4',
+    'biblioteca'
 ]
 
 MIDDLEWARE = [

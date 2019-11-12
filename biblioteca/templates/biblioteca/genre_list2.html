@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Géneros</title>
+</head>
+<body>
+{{ listado }}
+<ul>
+{% for genre in listado %}
+    <li><a href="{% url 'biblioteca:genre-detail'  genre.id %}">{{ genre.name }}</a>: Operaciones:<a href="{% url 'genre-detail'  genre.id %}">Detalle</a><a href="{% url 'genre-update-form'  genre.id %}">Editar</a><a href="{% url 'genre-delete'  genre.id %}">Borrar</a></li>
+{% empty %}
+    <li>No hay Géneros todavía</li>
+{% endfor %}
+</ul>
+</body>
+</html>
