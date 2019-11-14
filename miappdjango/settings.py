@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'crud',
     'bootstrap4',
     'biblioteca',
-    'django_tables2'
+    'django_tables2',
+    'genericas'
 ]
 
 MIDDLEWARE = [

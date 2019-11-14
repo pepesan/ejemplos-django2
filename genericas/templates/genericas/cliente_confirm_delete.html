@@ -1,0 +1,5 @@
+<form method="post">{% csrf_token %}
+ <p>Estás seguro que quieres borrar el cliente "{{ object.nombre }}"?</p>
+ <input type="submit" value="Confirmar" />
+</form>
+<a href="{% url 'genericas:cliente-list' %}">Volver</a>

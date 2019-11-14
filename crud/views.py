@@ -94,6 +94,9 @@ def saveClass(request):
     producto = ProductForm(request.POST)
     if request.method == "POST" and producto.is_valid():
         print("Producto válido")
+        print(request.POST)
+        print(request.POST['nombre'])
+        #print(producto.precio)
         mititulo = "Confirmación de Producto"
         template = loader.get_template('crud/saveClass.html')
         # return HttpResponse(template.render(context, request))

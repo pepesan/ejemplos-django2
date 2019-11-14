@@ -7,7 +7,17 @@ import uuid  # Requerido por las BooksInstances
 class Libro(models.Model):
     #Atributo de cada Libro, marca que es un conjunto de caracteres con un máximo de 200
     nombre = models.CharField(max_length=200)
+    escritor= models.ForeignKey('Autor', on_delete=models.SET_NULL, null=True)
     #Función de conversión a cadena del objeto
+    def __str__(self):
+        return self.nombre
+    def get_absolute_url(self):
+        """Devuelve el URL a una instancia particular de
+           Libro"""
+        return reverse('genericas:libro-detail', args=[str(self.id)])
+
+class Autor(models.Model):
+    nombre= models.CharField(max_length=100)
     def __str__(self):
         return self.nombre
 

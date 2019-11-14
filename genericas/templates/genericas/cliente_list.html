@@ -1,0 +1,15 @@
+<h1>Clientes</h1>
+<a href="{% url 'genericas:cliente-create' %}">Crear Cliente</a>
+<ul>
+{% for cliente in object_list %}
+ <li>
+     <a href="{% url 'genericas:cliente-detail' cliente.id %}">{{ cliente.nombre }}</a>
+     <a href="{% url 'genericas:cliente-update-form' cliente.id %}"><button>Editar</button></a>
+     <a href="{% url 'genericas:cliente-delete' cliente.id %}"><button>Borrar</button></a>
+ </li>
+{% empty %}
+ <li>No hay clientes todavía</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'genericas:libro-create-complejo' %}">Crear Libro Complejo</a>

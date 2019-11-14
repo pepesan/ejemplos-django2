@@ -24,4 +24,5 @@ urlpatterns = [
     path('',include('miapp.urls')),
     path('crud/',include('crud.urls', namespace='crud')),
     path('biblioteca/', include('biblioteca.urls')),
+    path('genericas/', include('genericas.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
