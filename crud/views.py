@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
+
+from crud.models import Producto
 from .form import ProductForm
 from django.shortcuts import redirect
 # Create your views here.
@@ -8,6 +10,7 @@ from django.shortcuts import redirect
 def index(request):
     mititulo = "Listado de Productos"
     template = loader.get_template('crud/index.html')
+    """
     productos = [
         {
             'id': 2,
@@ -25,6 +28,8 @@ def index(request):
             'precio': 9.9
         },
     ]
+    """
+    productos= Producto.objects.all()
     context = {
         'titulo': mititulo,
         'productos': productos
@@ -60,11 +65,14 @@ def addClassForm(request):
 def show(request, id):
     mititulo = "Mostrar Producto"
     template = loader.get_template('crud/show.html')
+    """
     producto = {
         'id': id,
         'nombre': "HDD 4TB",
         'precio': 35
     }
+    """
+    producto= Producto.objects.get(pk=id)
     context = {
         'titulo': mititulo,
         'producto': producto
@@ -74,16 +82,19 @@ def save(request):
     print(request.POST)
     mititulo = "Confirmación de alta de Producto"
     template = loader.get_template('crud/save.html')
+    """
     producto = request.POST
     producto.id= 2
 
-    """
     producto = {
         'id': 2,
         'nombre': "HDD 4TB",
         'precio': 35
     }
     """
+    # print(request.POST)
+    producto = Producto(nombre=request.POST['nombre'], precio=request.POST['precio'])
+    producto.save()
     context = {
         'titulo': mititulo,
         'producto': producto
@@ -116,11 +127,17 @@ def saveClass(request):
 def saveEdit(request, id):
     mititulo = "Producto guardado"
     template = loader.get_template('crud/save.html')
+    producto= Producto.objects.get(pk=id)
+    producto.nombre=request.POST['nombre']
+    producto.precio=request.POST['precio']
+    producto.save()
+    """
     producto = {
         'id': id,
         'nombre': "HDD 4TB",
         'precio': 35
     }
+    """
     context = {
         'titulo': mititulo,
         'producto': producto
@@ -129,11 +146,14 @@ def saveEdit(request, id):
 def editForm(request, id):
     mititulo = "Formulario de alta de Productos"
     template = loader.get_template('crud/editForm.html')
+    producto = Producto.objects.get(pk=id)
+    """
     producto = {
         'id': id,
         'nombre': "HDD 4TB",
         'precio': 35
     }
+    """
     context = {
         'titulo': mititulo,
         'producto': producto
@@ -142,11 +162,15 @@ def editForm(request, id):
 def deleteForm(request, id):
     mititulo = "Confirmación de Borrado de Producto"
     template = loader.get_template('crud/deleteForm.html')
+
+    producto = Producto.objects.get(pk=id)
+    """
     producto = {
         'id': id,
         'nombre': "HDD 4TB",
         'precio': 35
     }
+    """
     context = {
         'titulo': mititulo,
         'producto': producto
@@ -155,11 +179,15 @@ def deleteForm(request, id):
 def deleteConfirmation(request, id):
     mititulo = "Confirmación de borrado de Producto"
     template = loader.get_template('crud/deleteConfirm.html')
+    """
     producto = {
         'id': id,
         'nombre': "HDD 4TB",
         'precio': 35
     }
+    """
+    producto = Producto.objects.get(pk=id)
+    producto.delete()
     context = {
         'titulo': mititulo,
         'producto': producto
