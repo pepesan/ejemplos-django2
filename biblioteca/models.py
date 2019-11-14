@@ -8,6 +8,7 @@ class Libro(models.Model):
     #Atributo de cada Libro, marca que es un conjunto de caracteres con un máximo de 200
     nombre = models.CharField(max_length=200)
     escritor= models.ForeignKey('Autor', on_delete=models.SET_NULL, null=True)
+    generos = models.ManyToManyField('Genero', help_text="Select a genre for this book")
     #Función de conversión a cadena del objeto
     def __str__(self):
         return self.nombre
@@ -18,6 +19,11 @@ class Libro(models.Model):
 
 class Autor(models.Model):
     nombre= models.CharField(max_length=100)
+    def __str__(self):
+        return self.nombre
+
+class Genero (models.Model):
+    nombre=models.CharField(max_length=100)
     def __str__(self):
         return self.nombre
 

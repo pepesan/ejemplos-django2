@@ -39,7 +39,7 @@ class ClienteDelete(DeleteView):
 
 class LibroCreate(CreateView):
     model = Libro
-    fields = ['nombre', 'escritor']
+    fields = ['nombre', 'escritor', 'generos']
 
 class LibroDetailView(DetailView):
     model = Libro
