@@ -193,3 +193,50 @@ def deleteConfirmation(request, id):
         'producto': producto
     }
     return HttpResponse(template.render(context, request))
+
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from .models import Producto, ProductoSerializer
+
+@csrf_exempt
+def indexApi(request):
+    try:
+        productos = Producto.objects.all()
+    except Producto.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = ProductoSerializer(productos, many=True, context={'request': request})
+        return JsonResponse(serializer.data, safe=False, status=200)
+    elif request.method == 'POST':
+        data = JSONParser().parse(request)
+        serializer = ProductoSerializer(data=data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=201)
+        return JsonResponse(serializer.errors, status=400)
+@csrf_exempt
+def detailApi(request, pk):
+
+    """
+    Retrieve, update or delete a code snippet.
+    """
+    try:
+        producto = Producto.objects.get(pk=pk)
+    except Producto.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = ProductoSerializer(producto)
+        return JsonResponse(serializer.data)
+    elif request.method == 'PUT':
+        data = JSONParser().parse(request)
+        serializer = ProductoSerializer(producto, data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, status=200)
+        return JsonResponse(serializer.errors, status=400)
+    elif request.method == 'DELETE':
+        producto.delete()
+        producto.id=pk
+        serializer = ProductoSerializer(producto)
+        return JsonResponse(serializer.data, status=204)

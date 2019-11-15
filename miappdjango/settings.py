@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'bootstrap4',
     'biblioteca',
     'django_tables2',
-    'genericas'
+    'genericas',
+    'rest_framework',
+    'apirest'
 ]
 
 MIDDLEWARE = [

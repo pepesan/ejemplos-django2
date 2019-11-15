@@ -25,4 +25,5 @@ urlpatterns = [
     path('crud/',include('crud.urls', namespace='crud')),
     path('biblioteca/', include('biblioteca.urls')),
     path('genericas/', include('genericas.urls')),
+    path('api/', include('apirest.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
