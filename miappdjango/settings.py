@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django_tables2',
     'genericas',
     'rest_framework',
-    'apirest'
+    'apirest',
+    'rest_framework_swagger',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+# Para que funcione bien swagger hay que incluir esta clase
+REST_FRAMEWORK = { 'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema' }

@@ -15,15 +15,22 @@ Including another URLconf
 """''
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import url
 from miapp import views
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Pastebin API')
 #import miapp
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('miapp.urls')),
+    path('', include('miapp.urls', namespace='miapp')),
     path('crud/',include('crud.urls', namespace='crud')),
     path('biblioteca/', include('biblioteca.urls')),
     path('genericas/', include('genericas.urls')),
     path('api/', include('apirest.urls')),
+    url(r'^docs/', schema_view),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+

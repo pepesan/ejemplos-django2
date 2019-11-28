@@ -1,18 +1,21 @@
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
+
 # Create your views here.
-menu ="""<ul>
+menu = """<ul>
         <li><a href='/'>Inicio</a></li>
         <li><a href='/contacto/'>Contacto</a></li>
         <li><a href='/productos/'>Productos</a></li>
         <li><a href='/plantilla/'>Uso de Plantilla</a></li>
         <li><a href='/incluye/'>Incluye menu</a></li>
         </ul>"""
+
+
 def index(request):
     return HttpResponse(
-       menu +
-        "Estás en la página principal. </br>")
+        menu +
+        "<h2>Estás en la página principal.</h2>")
 
 
 def contacto(request):
@@ -26,34 +29,38 @@ def listadoProductos(request):
         menu +
         "Listado de Productos </br>")
 
+
 def muestraPlantilla(request):
-    mititulo="Mi título molón"
+    mititulo = "Mi título molón"
     template = loader.get_template('miapp/plantilla.html')
     context = {
         'titulo': mititulo
     }
-    return HttpResponse(template.render(context,request))
+    return HttpResponse(template.render(context, request))
+
 
 def muestraDatos(request):
-    mititulo="Mi título molón"
+    mititulo = "Mi título molón"
     template = loader.get_template('miapp/datos.html')
     context = {
         'titulo': mititulo,
         'subtitulo': "Mi subtítulo aún más molón",
         'entero': 2
     }
-    return HttpResponse(template.render(context,request))
+    return HttpResponse(template.render(context, request))
 
-def capturaDatos(request , n):
+
+def capturaDatos(request, n):
     template = loader.get_template('miapp/captura.html')
-    context={
+    context = {
         'datoCapturado': n,
     }
     return HttpResponse(template.render(context, request))
 
-def capturaCadena(request , cadena):
+
+def capturaCadena(request, cadena):
     template = loader.get_template('miapp/captura.html')
-    context={
+    context = {
         'datoCapturado': cadena,
     }
     return HttpResponse(template.render(context, request))
@@ -67,9 +74,34 @@ def capturaFecha(request, agno, mes):
     }
     return HttpResponse(template.render(context, request))
 
+
 def incluyePlantilla(request):
     template = loader.get_template('miapp/incluye.html')
     context = {
         'titulo': "Incluyendo el menu"
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def pagina1(request):
+    template = loader.get_template('miapp/pagina1.html')
+    context = {
+        'titulo': "Pagina 1"
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def pagina2(request):
+    template = loader.get_template('miapp/pagina2.html')
+    context = {
+        'titulo': "Pagina 2"
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def conBootstrap(request):
+    template = loader.get_template('miapp/conb.html')
+    context = {
+        'titulo': "Con Bootstrap"
     }
     return HttpResponse(template.render(context, request))

@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{{titulo}}</title>
+    {% load static %}
+    <!--link rel="stylesheet" href="/static/miapp/estilos.css"  /-->
+    <link rel="stylesheet" href="{% static "miapp/estilos.css" %}"  />
 </head>
 <body>
 <h3>{{ titulo }}</h3>
 <h2>Subtítulo</h2>
-{% load static %}
+
 <p>
 <img src="{% static "miapp/by-nc-sa.png" %}" alt="My image"></p>
+<script src="{% static "miapp/jquery-3.4.1.js" %}"></script>
+<script>
+    $(document).ready(function () {
+        console.log("Ready cargado")
+    })
+</script>
 </body>
 </html>
