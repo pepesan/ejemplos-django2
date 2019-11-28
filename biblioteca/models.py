@@ -114,3 +114,12 @@ class BookInstance(models.Model):
         String for representing the Model object
         """
         return '%s (%s)' % (self.id, self.book.title)
+
+class Ordenador(models.Model):
+    marca= models.CharField(max_length=100)
+    modelo=models.CharField(max_length=100)
+    precio = models.FloatField(null=True, blank=True)
+    descripcion = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.marca + ": " +self.modelo
