@@ -5,7 +5,7 @@ from django.urls import reverse
 import uuid  # Requerido por las BooksInstances
 
 class Libro(models.Model):
-    #Atributo de cada Libro, marca que es un conjunto de caracteres con un máximo de 200
+    #Atributo de cada Libro, marca que es un conjunto de caracteres con un máximo de 200pk
     nombre = models.CharField(max_length=200)
     escritor= models.ForeignKey('Autor', on_delete=models.SET_NULL, null=True)
     generos = models.ManyToManyField('Genero', help_text="Select a genre for this book")
@@ -123,3 +123,11 @@ class Ordenador(models.Model):
 
     def __str__(self):
         return self.marca + ": " +self.modelo
+
+class Test1(models.Model):
+    nombre= models.CharField(max_length=20, default='')
+    tests2 = models.ManyToManyField('Test2', blank=True)
+
+class Test2(models.Model):
+    nombre = models.CharField(max_length=20, default='')
+    tests1 = models.ManyToManyField('Test1', through=Test1.tests2.through, blank=True)
