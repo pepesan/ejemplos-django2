@@ -13,10 +13,11 @@ from rest_framework import status
 @csrf_exempt
 def indexApi(request):
     try:
-        productos = Producto.objects.all()
+        productos = Producto.objects.all()[:1]
     except Producto.DoesNotExist:
         return HttpResponse(status=404)
     if request.method == 'GET':
+        productos = Producto.objects.all()
         serializer = ProductoSerializer(productos, many=True, context={'request': request})
         return JsonResponse(serializer.data, safe=False, status=200)
     elif request.method == 'POST':

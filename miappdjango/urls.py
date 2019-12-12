@@ -29,6 +29,7 @@ urlpatterns = [
     path('crud/',include('crud.urls', namespace='crud')),
     path('biblioteca/', include('biblioteca.urls')),
     path('genericas/', include('genericas.urls')),
+    # aplicación apirest URLBASE /api/
     path('api/', include('apirest.urls')),
     url(r'^docs/', schema_view),
     url(r'^doc/', include_docs_urls(title='My API title'))
