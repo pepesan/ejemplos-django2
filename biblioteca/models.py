@@ -124,6 +124,15 @@ class Ordenador(models.Model):
     def __str__(self):
         return self.marca + ": " +self.modelo
 
+
+class Noticia(models.Model):
+    titulo= models.CharField(max_length=20, default='')
+    tags = models.ManyToManyField('Tag', blank=True)
+
+class Tag(models.Model):
+    nombre = models.CharField(max_length=20, default='')
+    noticias = models.ManyToManyField('Noticia', through=Noticia.tags.through, blank=True)
+
 class Test1(models.Model):
     nombre= models.CharField(max_length=20, default='')
     tests2 = models.ManyToManyField('Test2', blank=True)

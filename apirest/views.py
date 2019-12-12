@@ -38,7 +38,7 @@ def detailApi(request, pk):
         return HttpResponse(status=404)
     if request.method == 'GET':
         serializer = ProductoSerializer(producto)
-        return JsonResponse(serializer.data)
+        return JsonResponse(serializer.data, status=200)
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         serializer = ProductoSerializer(producto, data=data)
@@ -57,13 +57,12 @@ class ProductoList(APIView):
     def get(self, request, format=None):
         productos = Producto.objects.all()
         serializer = ProductoSerializer(productos, many=True, context={'request': request})
-        return Response(serializer.data)
-    def post(self, request, pk, format=None):
-        producto = self.get_object(pk)
-        serializer = ProductoSerializer(producto, data=request.data, context={'request': request})
+        return Response(serializer.data, status=200)
+    def post(self, request, format=None):
+        serializer = ProductoSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=200)
+            return Response(serializer.data, status=201)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class ProductoDetail(APIView):
@@ -73,16 +72,21 @@ class ProductoDetail(APIView):
             return Producto.objects.get(pk=pk)
          except Producto.DoesNotExist:
             raise Http404
-
+    def get(self, request, pk, format=None):
+        serializer = ProductoSerializer(self.get_object(pk), context={'request': request})
+        return Response(serializer.data, status=200)
     def put(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        serializer = ProductoSerializer(snippet, data=request.data, context={'request': request})
+        producto = self.get_object(pk)
+        serializer = ProductoSerializer(producto, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=200)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        snippet = self.get_object(pk)
-        snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        producto = self.get_object(pk)
+        serializer = ProductoSerializer(self.get_object(pk), context={'request': request})
+        if serializer.is_valid():
+            producto.delete()
+            return Response(serializer.data,status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
