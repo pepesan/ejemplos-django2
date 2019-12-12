@@ -20,7 +20,7 @@ from miapp import views
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_swagger.views import get_swagger_view
-
+from rest_framework.documentation import include_docs_urls
 schema_view = get_swagger_view(title='Pastebin API')
 #import miapp
 urlpatterns = [
@@ -31,6 +31,7 @@ urlpatterns = [
     path('genericas/', include('genericas.urls')),
     path('api/', include('apirest.urls')),
     url(r'^docs/', schema_view),
+    url(r'^doc/', include_docs_urls(title='My API title'))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
