@@ -10,6 +10,8 @@ from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
+
 @csrf_exempt
 def indexApi(request):
     try:
@@ -27,9 +29,10 @@ def indexApi(request):
             serializer.save()
             return JsonResponse(serializer.data, status=201)
         return JsonResponse(serializer.errors, status=400)
+
+
 @csrf_exempt
 def detailApi(request, pk):
-
     """
     Retrieve, update or delete a code snippet.
     """
@@ -49,16 +52,18 @@ def detailApi(request, pk):
         return JsonResponse(serializer.errors, status=400)
     elif request.method == 'DELETE':
         producto.delete()
-        producto.id=pk
+        producto.id = pk
         serializer = ProductoSerializer(producto)
         return JsonResponse(serializer.data, status=204)
 
+
 class ProductoList(APIView):
-    #Lista todos los objetos
+    # Lista todos los objetos
     def get(self, request, format=None):
         productos = Producto.objects.all()
         serializer = ProductoSerializer(productos, many=True, context={'request': request})
         return Response(serializer.data, status=200)
+
     def post(self, request, format=None):
         serializer = ProductoSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
@@ -66,16 +71,19 @@ class ProductoList(APIView):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class ProductoDetail(APIView):
-    #Retrieve, update or delete a snippet instance.
+    # Retrieve, update or delete a snippet instance.
     def get_object(self, pk):
-         try:
+        try:
             return Producto.objects.get(pk=pk)
-         except Producto.DoesNotExist:
+        except Producto.DoesNotExist:
             raise Http404
+
     def get(self, request, pk, format=None):
         serializer = ProductoSerializer(self.get_object(pk), context={'request': request})
         return Response(serializer.data, status=200)
+
     def put(self, request, pk, format=None):
         producto = self.get_object(pk)
         serializer = ProductoSerializer(producto, data=request.data, context={'request': request})
@@ -87,7 +95,5 @@ class ProductoDetail(APIView):
     def delete(self, request, pk, format=None):
         producto = self.get_object(pk)
         serializer = ProductoSerializer(self.get_object(pk), context={'request': request})
-        if serializer.is_valid():
-            producto.delete()
-            return Response(serializer.data,status=status.HTTP_204_NO_CONTENT)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        producto.delete()
+        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)

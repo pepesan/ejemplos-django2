@@ -2,10 +2,18 @@ from django.db import models
 
 
 # Create your models here.
+from django.urls import reverse
+
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=200)
     precio = models.FloatField(null=True, blank=True)
+
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular instance of Product.
+        """
+        return reverse('apirest:producto-detail', args=[str(self.id)])
 
     def __str__(self):
         return str(self.id) + ":" + self.nombre
