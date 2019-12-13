@@ -22,8 +22,8 @@ class Producto(models.Model):
 from rest_framework import serializers, viewsets
 
 
-class ProductoSerializer(serializers.HyperlinkedModelSerializer):
-    # class ProductoSerializer(serializers.ModelSerializer):
+#class ProductoSerializer(serializers.HyperlinkedModelSerializer):
+class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = ('id', 'nombre', 'precio')
@@ -32,7 +32,7 @@ class ProductoSerializer(serializers.HyperlinkedModelSerializer):
 class ProductViewSet(viewsets.ModelViewSet):
     """
     retrieve:
-        Return the given dog.
+        Return the given pro.
 
     list:
         Return a list of all dogs.

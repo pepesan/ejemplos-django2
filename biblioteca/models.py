@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 from django.urls import reverse
 import uuid  # Requerido por las BooksInstances
+from rest_framework import serializers, viewsets
 
 class Libro(models.Model):
     #Atributo de cada Libro, marca que es un conjunto de caracteres con un máximo de 200pk
@@ -26,6 +27,15 @@ class Genero (models.Model):
     nombre=models.CharField(max_length=100)
     def __str__(self):
         return self.nombre
+
+
+
+
+#class ProductoSerializer(serializers.HyperlinkedModelSerializer):
+class GeneroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Genero
+        fields = ('id', 'nombre')
 
 class Language(models.Model):
     """
