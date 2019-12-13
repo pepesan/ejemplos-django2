@@ -6,6 +6,9 @@ for item in schema:
 
 data = client.action(schema, ['api', 'class', 'list'])
 print(data)
+for item in data:
+    print(item)
+    print(item['nombre'])
 
 data = client.action(schema, ['api', 'class', 'create'], params={
     'nombre': 'Pepe',

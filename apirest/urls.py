@@ -1,6 +1,7 @@
 from django.urls import include, path
 from rest_framework_simplejwt import views as jwt_views
 from apirest.views import *
+from rest_framework.routers import DefaultRouter
 
 app_name = 'apirest'
 

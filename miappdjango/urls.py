@@ -32,7 +32,7 @@ urlpatterns = [
     # aplicación apirest URLBASE /api/
     path('api/', include('apirest.urls', namespace='apirest')),
     url(r'^docs/', schema_view),
-    url(r'^doc/', include_docs_urls(title='My API title'))
+    url(r'^doc/', include_docs_urls(title='Mi API Molón'))
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

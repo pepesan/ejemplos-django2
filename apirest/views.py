@@ -55,7 +55,7 @@ def detailApi(request, pk):
         producto.delete()
         producto.id = pk
         serializer = ProductoSerializer(producto)
-        return JsonResponse(serializer.data, status=204)
+        return JsonResponse(serializer.data, status=200)
 
 
 class ProductoList(APIView):
@@ -97,7 +97,7 @@ class ProductoDetail(APIView):
         producto = self.get_object(pk)
         serializer = ProductoSerializer(self.get_object(pk), context={'request': request})
         producto.delete()
-        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class GeneroList(APIView):
@@ -139,7 +139,7 @@ class GeneroDetail(APIView):
         genero = self.get_object(pk)
         serializer = GeneroSerializer(self.get_object(pk), context={'request': request})
         genero.delete()
-        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class AutorList(APIView):
     # Lista todos los objetos
@@ -180,7 +180,7 @@ class AutorDetail(APIView):
         autor = self.get_object(pk)
         serializer = AutorSerializer(self.get_object(pk), context={'request': request})
         autor.delete()
-        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class LibroList(APIView):
     # Lista todos los objetos
@@ -221,7 +221,7 @@ class LibroDetail(APIView):
         libro = self.get_object(pk)
         serializer = LibroSerializer(self.get_object(pk), context={'request': request})
         libro.delete()
-        return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 from rest_framework.permissions import IsAuthenticated
 

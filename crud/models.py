@@ -32,22 +32,22 @@ class ProductoSerializer(serializers.ModelSerializer):
 class ProductViewSet(viewsets.ModelViewSet):
     """
     retrieve:
-        Return the given pro.
+        Return the given product.
 
     list:
-        Return a list of all dogs.
+        Return a list of all product.
 
     create:
-        Create a new dog.
+        Create a new product.
 
     destroy:
-        Delete a dog.
+        Delete a product.
 
     update:
-        Update a dog.
+        Update a product.
 
     partial_update:
-        Update a dog.
+        Update a product.
     """
 
     queryset = Producto.objects.all()
