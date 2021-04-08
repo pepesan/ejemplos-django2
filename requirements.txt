@@ -1,5 +1,5 @@
 requests
-django==2.2.8
+django==2.2.20
 django-bootstrap4==1.0.1
 django-tables2==2.1.1
 djangorestframework==3.10.3
